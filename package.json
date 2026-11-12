@@ -1,0 +1,35 @@
+{
+  "name": "rag-ecommerce-support",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js and Express RAG customer-support chatbot using Gemini and Pinecone",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "concurrently --kill-others -n api,web \"npm run dev:server\" \"npm run dev --workspace client\"",
+    "dev:server": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "build": "npm run build --workspace client",
+    "test": "node --test tests/*.test.js && npm run test --workspace client",
+    "ingest": "node src/ingest.js"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@google/genai": "^1.52.0",
+    "@pinecone-database/pinecone": "^6.1.4",
+    "dotenv": "^16.6.1",
+    "express": "^5.3.0",
+    "pdfjs-dist": "^3.11.174",
+    "cors": "^2.8.5",
+    "helmet": "^8.1.0",
+    "express-rate-limit": "^8.2.1"
+  },
+  "workspaces": [
+    "client"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "supertest": "^7.1.4"
+  }
+}
